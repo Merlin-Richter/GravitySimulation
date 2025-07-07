@@ -3,7 +3,7 @@
 
 import java.awt.*;
 
-public  class Planet {
+public  class Planet implements Entity {
 
         double x, y, vx, vy, ax, ay, m, r;
         Color color;

@@ -32,7 +32,8 @@ public class GameEngine extends Canvas implements Runnable {
 
     private GameEngine() {
         setPreferredSize(new Dimension(800, 600));
-        entities.add(new Circle(400, 300, 50, Color.RED));
+        entities.add(new Planet(400, 300, 10, 20, 50, 30, Color.RED));
+        entities.add(new Planet(200, 100, 0, 0, 50, 30, Color.RED));
     }
 
     private void start() {
@@ -55,13 +56,14 @@ public class GameEngine extends Canvas implements Runnable {
             delta += (now - last) / nsPerUpdate;
             last = now;
 
-            while (delta >= 1) { update(); delta--; }
+            while (delta >= 1) { update(nsPerUpdate/1000000000); delta--; }
             render(bs);
         }
     }
 
-    private void update() {
-        for (Entity e : entities) e.update();
+    private void update(double dt) {
+
+        for (Entity e : entities) e.update(dt);
     }
 
     private void render(BufferStrategy bs) {
@@ -78,21 +80,5 @@ public class GameEngine extends Canvas implements Runnable {
         } while (bs.contentsLost());
     }
 
-    /* ---------- entity system ---------- */
-    private interface Entity {
-        void update();
-        void render(Graphics2D g);
-    }
 
-    private static class Circle implements Entity {
-        int x, y, r; Color color;
-        Circle(int x, int y, int r, Color c){ this.x=x; this.y=y; this.r=r; this.color=c; }
-
-        public void update() { /* no logic yet */ }
-
-        public void render(Graphics2D g) {
-            g.setColor(color);
-            g.fillOval(x - r, y - r, r * 2, r * 2);
-        }
-    }
 }
