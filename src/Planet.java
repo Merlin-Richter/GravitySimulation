@@ -28,7 +28,14 @@ public  class Planet implements Entity {
     }
 
     public void update(double dt, List<Entity> other_entities) {
-            vx += ax * dt;
+           ax = 0;
+           ay = 0;
+           for(Entity other : other_entities){
+               if ( other!= this){
+                   force_calc(other);
+               }
+           }
+           vx += ax * dt;
             vy += ay * dt ;
             x+= vx * dt;
             y += vy * dt;
