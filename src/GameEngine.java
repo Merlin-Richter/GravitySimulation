@@ -64,10 +64,7 @@ public class GameEngine extends Canvas implements Runnable {
     private void update(double dt) {
 
         for (Entity e : entities){
-            for (Entity other_e : entities) {
-                e.
-            }
-            e.update(dt);
+            e.update(dt, entities);
         }
     }
 

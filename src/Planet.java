@@ -2,6 +2,7 @@
 
 
 import java.awt.*;
+import java.util.List;
 
 public  class Planet implements Entity {
 
@@ -26,7 +27,7 @@ public  class Planet implements Entity {
         return this.y;
     }
 
-    public void update(double dt) {
+    public void update(double dt, List<Entity> other_entities) {
             vx += ax * dt;
             vy += ay * dt ;
             x+= vx * dt;
