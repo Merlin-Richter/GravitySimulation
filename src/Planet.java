@@ -31,14 +31,14 @@ public  class Planet implements Entity {
            ax = 0;
            ay = 0;
            for(Entity other : other_entities){
-               if ( other!= this){
+               if ( other!= this) {
                    force_calc(other);
                }
            }
            vx += ax * dt;
-            vy += ay * dt ;
-            x+= vx * dt;
-            y += vy * dt;
+           vy += ay * dt ;
+           x+= vx * dt;
+           y += vy * dt;
         }
 
         public void force_calc (Entity other){

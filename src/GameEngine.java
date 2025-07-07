@@ -32,8 +32,8 @@ public class GameEngine extends Canvas implements Runnable {
 
     private GameEngine() {
         setPreferredSize(new Dimension(800, 600));
-        entities.add(new Planet(400, 300, 10, 20, 50, 30, Color.RED));
-        entities.add(new Planet(200, 100, 0, 0, 50, 30, Color.RED));
+        entities.add(new Planet(400, 300, 0, 0, 500000, 30, Color.RED));
+        entities.add(new Planet(300, 200, -30, 0, 500000, 30, Color.RED));
     }
 
     private void start() {
@@ -62,10 +62,12 @@ public class GameEngine extends Canvas implements Runnable {
     }
 
     private void update(double dt) {
-
-        for (Entity e : entities){
-            e.update(dt, entities);
+        for (int i = 0; i < 10000; i++) {
+            for (Entity e : entities){
+                e.update(dt/10000, entities);
+            }
         }
+
     }
 
     private void render(BufferStrategy bs) {
@@ -81,6 +83,4 @@ public class GameEngine extends Canvas implements Runnable {
             bs.show();
         } while (bs.contentsLost());
     }
-
-
 }
